@@ -51,10 +51,10 @@ namespace BankingImplementation
             musteriManager.ShowRealCustomers();
             musteriManager.ShowTuzelCustomers();
 
-            Console.WriteLine("REAL musteri 2 siliniyor...");
+            Console.WriteLine("REAL musteri 1 siliniyor...");
             Console.WriteLine("TUZEL musteri 5 siliniyor...");
 
-            musteriManager.DeleteRealCustomer(musteri2);
+            musteriManager.DeleteRealCustomer(musteri1);
             musteriManager.DeleteTuzelCustomer(musteri5);
 
             musteriManager.ShowRealCustomers();
@@ -70,12 +70,31 @@ namespace BankingImplementation
             ILoggerService fileLoggerService = new FileLoggerService();
             ILoggerService smsLoggerService = new SmsLoggerService();
 
-            List<IkrediManager> krediler = new List<IkrediManager> { konutKrediManager, tasitKrediManager, esnafKrediManager, ihtiyacKrediManager };
+            //List<IkrediManager> krediler = new List<IkrediManager> { konutKrediManager, tasitKrediManager, esnafKrediManager, ihtiyacKrediManager };
 
             BasvuruManager basvuruManager = new BasvuruManager();
             basvuruManager.TekKrediBasvurusuYap(tasitKrediManager,new List<ILoggerService> { smsLoggerService, databaseLoggerService });
 
+            //listenin içerisinde seçilen krediler oldugu düşünülsün.
             basvuruManager.BirdenFazlaKrediBasvurusuYap(new List<IkrediManager> { konutKrediManager, ihtiyacKrediManager }, fileLoggerService);
+
+            IWorkerManager stajyerManager = new StajyerManager();
+            IWorkerManager mudurManager = new MudurManager();
+            IWorkerManager memurManager = new MemurManager();
+
+            WorkerDal workerDal = new WorkerDal();
+            workerDal.Add(stajyerManager);
+            workerDal.Add(mudurManager);
+            workerDal.Add(memurManager);
+
+            Console.WriteLine("silme işlemi yapılıyor..");
+
+            workerDal.Delete(stajyerManager);
+
+            workerDal.ShowWorkers();
+
+            Console.ReadLine();
+        
         }
     }
 }

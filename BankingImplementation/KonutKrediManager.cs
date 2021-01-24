@@ -8,7 +8,7 @@ namespace BankingImplementation
     {
         public void Hesapla()
         {
-            Console.WriteLine("KONUT Kredisi Ödeme Planı Hesaplandı");
+            Console.WriteLine("KONUT Kredisi Ödeme Planı Hesaplandı ");
         }
 
         public void KrediIsmi()

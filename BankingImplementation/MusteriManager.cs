@@ -14,6 +14,7 @@ namespace BankingImplementation
         }
         public void AddTuzelCustomer(Musteri TuzelMusteri)
         {
+            
             tuzelCustomers.Add((TuzelMusteri)TuzelMusteri);
         }
 
