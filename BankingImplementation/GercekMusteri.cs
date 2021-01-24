@@ -10,7 +10,7 @@ namespace BankingImplementation
         public String TcNo { get; set; }
         public string Adi {
             get { return "SAYIN " + _firstName;  }
-            set { _firstName = value;  }
+            set { _firstName = value; }
         }
         public string SoyAdi { get; set; }
 
